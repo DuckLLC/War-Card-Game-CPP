@@ -4,22 +4,27 @@
 #include <iostream>
 #include <ctime>
 #include <Windows.h>
+
 using namespace std;
 int randRange(int low, int high);
+void war();
 
+//var
+int maxcards = 52;
+int player1cards = 26;
+int cpucards = 26;
+int currentcard1 = 0;
+int currentcard2 = 0;
+int playerwar = 0;
+int cpuwar = 0;
+int warnum = 1;
 int main()
 {
-    int maxcards = 52;
-    int player1cards = 26;
-    int cpucards = 26;
-    int currentcard1 = 0;
-    int currentcard2 = 0;
-    int playerwar = 0;
-    int cpuwar = 0;
-
-
     cout << "Loaded War V0.01" << endl;
     srand(time(NULL));
+
+    cout << "Press enter to start!" << endl;
+    cin.ignore();
 
     while (player1cards < 52 && cpucards < 52) {
         currentcard1 = randRange(1, 14);
@@ -40,34 +45,8 @@ int main()
         }
         else {
             if (currentcard1 == currentcard2) {
-                playerwar = randRange(1, 14);
-                Sleep(1000);
-                cpuwar = randRange(1, 14);
-
-                cout << "Player pulled a " << playerwar << endl;
-                cout << "CPU pulled a " << cpuwar << endl;
-
-                if (playerwar > cpuwar) {
-                    cout << "Player won the war!" << endl;
-                    player1cards = player1cards + 2;
-                    cpucards = cpucards - 2;
-
-                    cout << "Player has: " << player1cards << " cards" << endl;
-                    cout << "CPU has: " << cpucards << " cards" << endl;
-
-                    std::cin.ignore();
-                }
-                else {
-                    cout << "Cpu won the war" << endl;
-                    player1cards = player1cards - 2;
-                    cpucards = cpucards + 2;
-
-                    cout << "Player has: " << player1cards << " cards" << endl;
-                    cout << "CPU has: " << cpucards << " cards" << endl;
-
-                    std::cin.ignore();
-                }
-            }
+                war();
+           }
             else {
                 cout << "CPU Won the battle" << endl;
                 player1cards = player1cards - 1;
@@ -99,3 +78,38 @@ int randRange(int low, int high)
 {
     return rand() % (high - low) + low;
 }
+
+void war()
+{
+    playerwar = randRange(1, 14);
+    Sleep(1000);
+    cpuwar = randRange(1, 14);
+    cout << "Player had a: " << playerwar << endl;
+    cout << "Cpu had a: " << cpuwar << endl;
+
+    if (playerwar < cpuwar) {
+        cout << "Cpu won the war" << endl;
+        cpucards = cpucards + (2 * warnum);
+        player1cards = player1cards - (2 * warnum);
+        warnum = 1;
+        cout << "Player Cards: " << player1cards << endl;
+        cout << "CPU Cards: " << cpucards << endl;
+        cin.ignore();
+    }
+    if (playerwar > cpuwar) {
+        cout << "Player won the war" << endl;
+        player1cards = player1cards + (2 * warnum);
+        cpucards = cpucards - (2 * warnum);
+        warnum = 1;
+        cout << "Player Cards: " << player1cards << endl;
+        cout << "CPU Cards: " << cpucards << endl;
+        cin.ignore();
+    }
+    if (playerwar == cpuwar) {
+        warnum++;
+        cout << "Cards were equal";
+        war();
+    }
+}
+
+// https://github.com/DuckLLC/War-Card-Game-CPP/tree/V0.0.1
