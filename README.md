@@ -1,1 +1,13 @@
 # War
+The card game... In C++!
+
+Made by Raddelgo14
+
+Feature list:
+
+- [x] Basic War game with a end
+- [x] Basic file output
+- [ ] Advanced game with mutitple modes (Planed)
+- [ ] Advanced file outputting (Planed) 
+- [x] Open source code to let people help with updates
+- [x] And Lots more! 
