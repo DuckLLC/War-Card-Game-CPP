@@ -6,12 +6,12 @@
 #include <Windows.h>
 #include <fstream>
 #include <ctime>
-#pragma warning(disable : 4996)
+#include "Game.h"
+
 
 using namespace std;
 int randRange(int low, int high);
 void war();
-void getupdates(int date, string verson, int lastsupport);
 
 //var
 int maxcards = 52;
@@ -24,7 +24,12 @@ int cpuwar = 0;
 int warnum = 1;
 int main()
 {
-    getupdates(1665201600, "0.0.3", 1667188800);
+    Game newgame;
+    States newstate;
+
+    newgame.getupdates(1665201600, "0.0.3", 1667188800);
+    newstate.homescreen();
+
     fstream Gamefile;
     Gamefile.open("Game.txt", std::ios_base::out);
     if (Gamefile.is_open()) {
@@ -32,6 +37,7 @@ int main()
         srand(time(NULL));
 
         cout << "Press enter to start!" << endl;
+        cin.ignore();
         cin.ignore();
 
         while (player1cards < 52 && cpucards < 52) {
@@ -126,16 +132,6 @@ void war()
         war();
     }
 }
-std::string latestupatelink = "https://github.com/DuckLLC/War-Card-Game-CPP/releases";
-void getupdates(int date, string verson, int lastsupport)
-{
-    time_t now = time(0);
-    time_t lastsupported = lastsupport;
-    char* lastsupports = ctime(&lastsupported);
 
-    if (now > date) {
-        cout << "You are running Verson " << verson << endl << "This verson is most likely out of date" << endl << "It will no longer be supported on: " << lastsupports << "Get the latest update at: " << latestupatelink << endl << endl;
-    }
-}
 
 // https://github.com/DuckLLC/War-Card-Game-CPP/tree/V0.0.1
