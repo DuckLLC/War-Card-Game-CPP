@@ -22,6 +22,8 @@ int currentcard2 = 0;
 int playerwar = 0;
 int cpuwar = 0;
 int warnum = 1;
+string userinput = "";
+int newmax = 0;
 int main()
 {
     Game newgame;
@@ -97,7 +99,7 @@ int main()
 
 int randRange(int low, int high)
 {
-    return rand() % (high - low) + low;
+    return rand() % (high - low) + low; //Gets a random number (Highest has to be 1 more than higest number disired)
 }
 
 void war()

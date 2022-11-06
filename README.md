@@ -11,3 +11,14 @@ Feature list:
 - [ ] Advanced file outputting (Planed) 
 - [x] Open source code to let people help with updates
 - [x] And Lots more! 
+## Suported Versions
+Versions that are supported by a limited warrenty
+
+
+- 0.0.1 | ✅
+- 0.0.2 | ✅
+- 0.0.3 | ✅
+- 0.1.0 | Planned
+
+# Contributers
+@DuckLLC
