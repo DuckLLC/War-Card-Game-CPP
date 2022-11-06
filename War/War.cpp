@@ -22,6 +22,8 @@ int currentcard2 = 0;
 int playerwar = 0;
 int cpuwar = 0;
 int warnum = 1;
+string userinput = "";
+int newmax = 0;
 int main()
 {
     getupdates(1665201600, "0.0.3", 1667188800);
@@ -31,10 +33,17 @@ int main()
         cout << "Loaded War V0.0.3" << endl;
         srand(time(NULL));
 
-        cout << "Press enter to start!" << endl;
-        cin.ignore();
-
-        while (player1cards < 52 && cpucards < 52) {
+        cout << "Press 0 to start!" << endl;
+        cout << "Press 1 for settings" << endl;
+        cin >> userinput
+        if (userinput == "1"){
+            cout << "Type the number of cards you would like to be the max cards (Must be a multiple of 2)" << endl;
+            cin >> newmax;
+            if (newmax % 2 = 0){
+                maxcards = newmax;
+            }
+        }
+        while (player1cards < maxcards && cpucards < maxcards) {
             currentcard1 = randRange(1, 14);
             cout << "Your card was: " << currentcard1 << endl;
             Sleep(1000);
@@ -91,7 +100,7 @@ int main()
 
 int randRange(int low, int high)
 {
-    return rand() % (high - low) + low;
+    return rand() % (high - low) + low; //Gets a random number (Highest has to be 1 more than higest number disired)
 }
 
 void war()
