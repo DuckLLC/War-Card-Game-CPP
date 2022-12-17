@@ -7,42 +7,44 @@
 #include <fstream>
 #include <ctime>
 #include "Game.h"
+#include <stdlib.h>
 
 
 using namespace std;
+using std::cout;
 int randRange(int low, int high);
 void war();
-
+Game newgame;
 //var
-int maxcards = 52;
-int player1cards = 26;
-int cpucards = 26;
+int player1cards = newgame.maxcards / 2;
+int cpucards = newgame.maxcards / 2;
 int currentcard1 = 0;
 int currentcard2 = 0;
 int playerwar = 0;
 int cpuwar = 0;
 int warnum = 1;
 string userinput = "";
-int newmax = 0;
 int main()
 {
-    Game newgame;
-    States newstate;
 
-    newgame.getupdates(1665201600, "0.0.3", 1667188800);
-    newstate.homescreen();
+    newgame.getupdates(1672549152, "0.0.4", 1675227552);
+    newgame.homescreen();
+    system("cls");
+    player1cards = newgame.maxcards / 2;
+    cpucards = newgame.maxcards / 2;
 
     fstream Gamefile;
     Gamefile.open("Game.txt", std::ios_base::out);
     if (Gamefile.is_open()) {
-        cout << "Loaded War V0.0.3" << endl;
+        cout << "Loaded War V0.0.4" << endl;
         srand(time(NULL));
 
         cout << "Press enter to start!" << endl;
         cin.ignore();
         cin.ignore();
+        system("cls");
 
-        while (player1cards < 52 && cpucards < 52) {
+        while (player1cards < newgame.maxcards && cpucards < newgame.maxcards) {
             currentcard1 = randRange(1, 14);
             cout << "Your card was: " << currentcard1 << endl;
             Sleep(1000);
@@ -60,9 +62,11 @@ int main()
                 cout << "CPU has: " << cpucards << " cards" << endl;
                 Gamefile << "Player won" << endl;
                 std::cin.ignore();
+                system("cls");
             }
             else {
                 if (currentcard1 == currentcard2) {
+                    Gamefile << "War Commences" << endl;
                     war();
                 }
                 else {
@@ -74,13 +78,16 @@ int main()
                     cout << "CPU has: " << cpucards << " cards" << endl;
                     Gamefile << "Cpu Won" << endl;
                     std::cin.ignore();
+                    system("cls");
                 }
 
 
             }
         }
         Gamefile.close();
-
+        cout << "The war is over. Here are the results" << endl;
+        cout << "Player had: " << player1cards << " cards" << endl;
+        cout << "CPU had: " << cpucards << " cards" << endl;
     }
     else {
         cout << "Error, file did not open" << endl;
@@ -118,6 +125,7 @@ void war()
         cout << "Player Cards: " << player1cards << endl;
         cout << "CPU Cards: " << cpucards << endl;
         cin.ignore();
+        system("cls");
     }
     if (playerwar > cpuwar) {
         cout << "Player won the war" << endl;
@@ -127,6 +135,7 @@ void war()
         cout << "Player Cards: " << player1cards << endl;
         cout << "CPU Cards: " << cpucards << endl;
         cin.ignore();
+        system("cls");
     }
     if (playerwar == cpuwar) {
         warnum++;

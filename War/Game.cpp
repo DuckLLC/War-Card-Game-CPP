@@ -11,18 +11,35 @@ void Game::getupdates(int date, std::string verson, int lastsupport)
     }
 }
 
-void States::homescreen()
+void Game::homescreen()
 {
     int userinput;
 Menu:
-    std::cout << "Welcome to war! \n Press 1 to play \n Press 2 for info \n";
+    std::cout << "Welcome to war! \n\n Press 1 to play \n Press 2 for info \n Press 3 for settings \n";
     std::cin >> userinput;
+    system("cls");
     switch (userinput) {
     case 1:
         break;
     case 2:
         std::cout << "Created by Brady Delgadillo \n Version 0.0.3 \n \n";
+        std::cin.ignore();
+        std::cin.ignore();
+        system("cls");
         goto Menu;
+    case 3:
+        std::cout << "Enter the new max cards (Must be mutiple of 2)" << std::endl;
+        std::cin >> newmax;
+        if (newmax % 2 == 0) {
+            maxcards = newmax;
+            system("cls");
+            goto Menu;
+        }
+        else {
+            system("cls");
+            goto Menu;
+        }
+
     default:
         std::cout << "Invalid Input \n \n";
         goto Menu;
