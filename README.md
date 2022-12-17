@@ -18,6 +18,7 @@ Versions that are supported by a limited warrenty
 - 0.0.1 | ✅
 - 0.0.2 | ✅
 - 0.0.3 | ✅
+- 0.0.4 | Planned
 - 0.1.0 | Planned
 
 # Contributers
