@@ -26,7 +26,7 @@ int warnum = 1;
 string userinput = "";
 int main()
 {
-
+    Start:
     newgame.getupdates(1672549152, "0.0.4", 1675227552);
     newgame.homescreen();
     system("cls");
